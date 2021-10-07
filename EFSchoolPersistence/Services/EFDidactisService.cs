@@ -40,5 +40,11 @@ namespace EFSchoolPersistence.Services
         {
             return studentRepo.FindById(id);
         }
+
+        public void DeleteStudentById(long id)
+        {
+            studentRepo.Delete(id);
+            ctx.SaveChanges(); 
+        } 
     }
 }

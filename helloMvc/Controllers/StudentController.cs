@@ -54,5 +54,19 @@ namespace helloMvc.Controllers
             return View(s);
         }
 
+
+        public IActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(long id)
+        {
+            didacticsService.DeleteStudentById(id);
+            return View();
+        }
+
+
     }
 }
