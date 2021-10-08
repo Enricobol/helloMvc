@@ -14,6 +14,7 @@ namespace SchoolModel.Services
         Student CreateStudent(Student s);
         Student GetStudentById(long id);
         void DeleteStudentById(long id);
+        void UpdateStudent(Student s);
     }
 
 }

@@ -38,5 +38,12 @@ namespace helloMvc.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //GET: prendi dei dati dal database da mostrare
+        public IActionResult Students()
+        {
+            return View();
+        }
+
     }
 }

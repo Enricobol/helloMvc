@@ -1,17 +1,16 @@
 ﻿@model SchoolModel.Entities.Student
 
 @{
-    ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Crea un nuovo:</h1>
+<h1>Edita uno:</h1>
 
 <h4>Studente</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="StudentCode" class="control-label"></label>
@@ -23,6 +22,7 @@
                     <input class="form-check-input" asp-for="IsEmployee" /> @Html.DisplayNameFor(model => model.IsEmployee)
                 </label>
             </div>
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Firstname" class="control-label"></label>
                 <input asp-for="Firstname" class="form-control" />
@@ -54,14 +54,14 @@
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Crea" class="btn btn-primary" />
+                <input type="submit" value="Modifica" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Torna alla lista</a>
+    <a asp-action="Index">Annulla modifiche</a>
 </div>
 
 @*@section Scripts {

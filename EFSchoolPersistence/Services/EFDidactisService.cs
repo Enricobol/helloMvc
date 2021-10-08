@@ -44,7 +44,14 @@ namespace EFSchoolPersistence.Services
         public void DeleteStudentById(long id)
         {
             studentRepo.Delete(id);
-            ctx.SaveChanges(); 
-        } 
+            ctx.SaveChanges(); //Salviamo qui invece che nella repository
+        }
+
+        public void UpdateStudent(Student s)
+        {
+            studentRepo.Update(s);
+            ctx.SaveChanges(); //Salviamo qui invece che nella repository
+        }
+
     }
 }

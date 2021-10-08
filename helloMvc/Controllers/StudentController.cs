@@ -16,57 +16,92 @@ namespace helloMvc.Controllers
         private readonly IDidactisService didacticsService;
         #endregion
 
-        public StudentController(ILogger<StudentController> logger, IDidactisService didacticsService) 
+        public StudentController(ILogger<StudentController> logger, IDidactisService didacticsService)
         {
             this._logger = logger;
             this.didacticsService = didacticsService;
         }
 
+        #region COMANDI LISTA E DETTAGLI
+        //GET: la pagina prende dei dati da usare/mostrare
         public IActionResult Index()
         {
             var students = didacticsService.GetAllStudents().ToList();
             return View(students);
         }
+
+        //GET: la pagina prende dei dati da usare/mostrare
         public IActionResult List(string lastnameLike)
         {
             var students = didacticsService.GetStudentsByLastnameLike(lastnameLike);
             return View(students);
         }
 
-        public IActionResult Details(long id) 
+        //GET: la pagina prende dei dati da usare/mostrare
+        public IActionResult Details(long id)
         {
             var student = didacticsService.GetStudentById(id);
             return View(student);
         }
-        public IActionResult Create() 
+        #endregion
+
+        #region COMANDO CREA STUDENTE
+        //GET: la pagina prende dei dati da usare/mostrare 
+        public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Create(Student s) 
+        [HttpPost]//POST: la pagina ritorna dei dati da mettere nel DB
+        public IActionResult Create(Student s)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 didacticsService.CreateStudent(s);
                 return RedirectToAction("Index");
             }
             return View(s);
         }
+        #endregion
 
-
-        public IActionResult Delete()
+        #region COMANDO ELIMINA STUDENTE
+        //GET: la pagina prende dei dati da usare/mostrare
+        public IActionResult Delete(long id, string modificoSoloLaFirma)
         {
-            return View();
+            var student = didacticsService.GetStudentById(id);
+            return View(student);
         }
 
-        [HttpPost]
+        [HttpPost]//POST: la pagina ritorna dei dati da mettere nel DB
         public IActionResult Delete(long id)
         {
-            didacticsService.DeleteStudentById(id);
-            return View();
+            if (ModelState.IsValid)
+            {
+                didacticsService.DeleteStudentById(id);
+                return RedirectToAction("Index");
+            }
+            return View(id);
+        }
+        #endregion
+
+        #region COMANDO AGGIORNA STUDENTE
+        //GET: la pagina prende dei dati da usare/mostrare
+        public IActionResult Edit(long id, string modificoSoloLaFirma)
+        {
+            var student = didacticsService.GetStudentById(id);
+            return View(student);
         }
 
-
+        [HttpPost]//POST: la pagina ritorna dei dati da mettere nel DB
+        public IActionResult Edit([Bind()] Student s) //Nb: Devo usare Bind per utilizzare i dati Editati in Student s
+        {
+            if (ModelState.IsValid)
+            {
+                didacticsService.UpdateStudent(s);
+                return RedirectToAction("Index");
+            }
+            return View(s);
+        }
+        #endregion
     }
 }
