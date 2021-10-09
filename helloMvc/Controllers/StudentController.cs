@@ -66,27 +66,27 @@ namespace helloMvc.Controllers
 
         #region COMANDO ELIMINA STUDENTE
         //GET: la pagina prende dei dati da usare/mostrare
-        public IActionResult Delete(long id, string modificoSoloLaFirma)
+        public IActionResult Delete(long id)
         {
             var student = didacticsService.GetStudentById(id);
             return View(student);
         }
 
         [HttpPost]//POST: la pagina ritorna dei dati da mettere nel DB
-        public IActionResult Delete(long id)
+        public IActionResult Delete([Bind()] Student s)
         {
             if (ModelState.IsValid)
             {
-                didacticsService.DeleteStudentById(id);
+                didacticsService.DeleteStudentById(s.Id);
                 return RedirectToAction("Index");
             }
-            return View(id);
+            return View(s.Id);
         }
         #endregion
 
         #region COMANDO AGGIORNA STUDENTE
         //GET: la pagina prende dei dati da usare/mostrare
-        public IActionResult Edit(long id, string modificoSoloLaFirma)
+        public IActionResult Edit(long id)
         {
             var student = didacticsService.GetStudentById(id);
             return View(student);

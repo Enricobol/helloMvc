@@ -39,6 +39,7 @@ namespace helloMvc
             services.AddControllersWithViews();
             //services.AddSingleton<IStudentRepository, InMemoryStudentRepository>();
             services.AddScoped<IStudentRepository, EFStudentRepository>();
+            services.AddScoped<ICourseRepository, EFCourseRepository>();
             services.AddScoped<IDidactisService, EFDidactisService>();
         }
 

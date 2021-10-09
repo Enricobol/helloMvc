@@ -20,4 +20,8 @@
     <ProjectReference Include="..\SchoolModel\SchoolModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

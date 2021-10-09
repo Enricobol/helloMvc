@@ -9,5 +9,8 @@ namespace SchoolModel.Entities
     {
         public String StudentCode { get; set; }
         public bool IsEmployee { get; set; }
+
+        //PROPRIETA' DI TIPO CONTENITORE
+        public virtual List<Subscription> Subscriptions { get; set; } = new List<Subscription>();
     }
 }
